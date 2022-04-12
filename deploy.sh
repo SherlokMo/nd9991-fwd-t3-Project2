@@ -1,0 +1,2 @@
+aws cloudformation create-stack --stack-name $1-infra --template-body file://infrastructure.yaml  --parameters file://infrastructure.json --capabilities "CAPABILITY_IAM" "CAPABILITY_NAMED_IAM" --region=us-west-2 &&
+aws cloudformation create-stack --stack-name $2-app --template-body file://app.yaml  --parameters file://app.json --capabilities "CAPABILITY_IAM" "CAPABILITY_NAMED_IAM" --region=us-west-2
