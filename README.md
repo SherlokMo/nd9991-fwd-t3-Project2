@@ -1,5 +1,9 @@
 # Deploy a high-availability web app using CloudFormation
 
+Application URL: http://serve-webap-xn3cmnrgdcbd-1351043148.us-west-2.elb.amazonaws.com/
+
+<br>
+
 To deploy your stack use this snippet after signing in to your AWS account in AWS CLI tool use this:
 ```bash
 ~$ ./deploy.sh INFRA_STACK_NAME SERVERS_STACK_NAME
