@@ -22,6 +22,16 @@ Parameters:
     Type: String
     Default: 10.0.1.0/24
 
+  PrivateSubnet1CIDR:
+    Description: A CidrBlock for private subnet 1 at AZ1
+    Type: String
+    Default: 10.0.2.0/24
+
+  PrivateSubnet2CIDR:
+    Description: A CidrBlock for private subnet 2 at AZ2
+    Type: String
+    Default: 10.0.2.0/24
+
 Resources:
   VPC:
     Type: AWS::EC2::VPC
@@ -66,3 +76,25 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub ${EnviromentName} Public Subnet AZ2
+
+  PrivateSubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      CidrBlock: !Ref PrivateSubnet1CIDR
+      MapPublicIpOnLaunch: false
+      AvailabilityZone: !Select [ 0, !GetAZs '']
+      Tags:
+        - Key: Name
+          Value: !Sub ${EnviromentName} Private Subnet AZ1
+
+  PrivateSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      CidrBlock: !Ref PrivateSubnet2CIDR
+      MapPublicIpOnLaunch: false
+      AvailabilityZone: !Select [ 0, !GetAZs '']
+      Tags:
+        - Key: Name
+          Value: !Sub ${EnviromentName} Private Subnet AZ2
