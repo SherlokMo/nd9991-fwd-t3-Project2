@@ -88,7 +88,8 @@ Resources:
       LaunchConfigurationName: !Ref WebAppLaunchConfigurations
       MinSize: 2
       MaxSize: 5
-      TargetGroupARNs: !Ref WebAppTargetGroup
+      TargetGroupARNs: 
+        - Ref: WebAppTargetGroup
 
   WebAppLB:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
