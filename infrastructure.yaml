@@ -1,0 +1,55 @@
+Description: >
+  Mohammad Salah | Udacity | Deploying a highly-available application
+  Project 2 | Infrastructure
+
+Parameters:
+  EnviromentName:
+    Description: An enviroment name that will be used for resources names
+    Type: String
+
+  VpcCidr:
+    Description: A CidrBlock for VPC Property
+    Type: String
+    Default: 10.0.0.0/16
+
+  PublicSubnet1CIDR:
+    Description: A CidrBlock for public subnet 1 at AZ1
+    Type: String
+    Default: 10.0.0.0/24
+  
+
+
+Resources:
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !Ref VpcCidr
+      EnableDnsHostNames: true 
+      Tags:
+        - Key: Name 
+          Value: !Ref EnviromentName
+  
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name 
+          Value: !Ref EnviromentName
+  
+  InternetGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      InternetGatewayId: !Ref InternetGateway
+      VpcId: !Ref VPC
+  
+  PublicSubnet1:
+    Type: AWS::EC2::Subnet1
+    Properties:
+      VpcId: !Ref VPC
+      CidrBlock: !Ref PublicSubnet1CIDR
+      MapPublicIpOnLaunch: true
+      AvailabilityZone: !Select [ 0, !GetAZs '']
+      Tags:
+        - Key: Name
+          Value: !Sub ${EnviromentName} Public Subnet AZ1
+      
