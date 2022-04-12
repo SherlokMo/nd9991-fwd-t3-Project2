@@ -1,0 +1,10 @@
+[
+    {
+        "ParameterKey": "EnvironmentName",
+		"ParameterValue": "UdacityProject"
+    },
+    {
+        "ParameterKey": "UbuntuImageId",
+        "ParameterValue": "ami-074251216af698218"
+    }
+]
