@@ -6,5 +6,9 @@
     {
         "ParameterKey": "UbuntuImageId",
         "ParameterValue": "ami-074251216af698218"
+    }, 
+    {
+        "ParameterKey": "bastionKey",
+        "ParameterValue": "bastionhost"
     }
 ]

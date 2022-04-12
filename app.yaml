@@ -10,6 +10,9 @@ Parameters:
     Description: The ID of ubuntu image ID
     Type: String
 
+  bastionKey:
+    Description: Bastion Host key pair name
+    Type: String
 
 Resources:        
   LBSecurityGroup:
@@ -123,6 +126,34 @@ Resources:
         Values: [/]
       ListenerArn: !Ref 'Listener'
       Priority: 1
+
+  BastionHostSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow SSH to the BastionHost.
+      VpcId: 
+        Fn::ImportValue: !Sub "${EnvironmentName}-VPCID"
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+
+  bastionhost:
+    Type: AWS::EC2::Instance
+    Properties:
+      SubnetId:
+        Fn::ImportValue: !Sub "${EnvironmentName}-PUB2-SN"
+      ImageId: !Ref UbuntuImageId
+      InstanceType: t3.micro
+      KeyName: !Ref bastionKey
+      SecurityGroupIds:
+        - !Ref BastionHostSecurityGroup
 
 Outputs:
   LBurl:
