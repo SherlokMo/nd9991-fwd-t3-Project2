@@ -136,7 +136,7 @@ Resources:
     DependsOn: InternetGatewayAttachment
     Properties:
       RouteTableId: !Ref PublicRouteTable
-      DestintationCidrBlock: 0.0.0.0/0
+      DestinationCidrBlock: 0.0.0.0/0
       GatewayId: !Ref InternetGateway
   
   PublicSubnet1RouteTableAssociation:
