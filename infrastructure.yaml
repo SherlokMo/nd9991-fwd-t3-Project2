@@ -3,7 +3,7 @@ Description: >
   Project 2 | Infrastructure
 
 Parameters:
-  EnviromentName:
+  EnvironmentName:
     Description: An enviroment name that will be used for resources names
     Type: String
 
