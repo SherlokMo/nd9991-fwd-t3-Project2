@@ -4,3 +4,6 @@ To create deploy your stack use this snippet after signing in to your AWS accoun
 ```bash
 ~$ ./deploy.sh INFRA_STACK_NAME SERVERS_STACK_NAME
 ```
+
+Notes:
+* I'm using us-west-2 Region
