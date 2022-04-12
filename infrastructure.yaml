@@ -120,7 +120,7 @@ Resources:
   NatGateway2: 
     Type: AWS::EC2::NatGateway
     Properties:
-      AllocationId: !GetAtt NatGateway2.AllocationId
+      AllocationId: !GetAtt NatGateway2EIP.AllocationId
       SubnetId: !Ref PublicSubnet2
   
   PublicRouteTable:
